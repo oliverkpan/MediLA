@@ -3,15 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from "react-google-maps";
 import {myjson} from "./data/hospital.js";
+import {myjson_two} from "./data/store.js";
+import { Button } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer'
 
 function Map() {
-  const [selectedPark, setSelectedPark] = useState(null);
+  const [selectedH, setSelectedH] = useState(null);
   
   return (
     <GoogleMap 
       defaultZoom={10} 
       defaultCenter={{ lat: 34.052235, lng: -118.243683}}
     >
+      
       {myjson.map(medical => (
         <Marker 
           key={medical.OBJECTID} 
@@ -20,24 +24,43 @@ function Map() {
           lng: medical.longitude
           }}
           onClick={() => {
-            setSelectedPark(medical);
+            setSelectedH(medical);
+          }}
+          icon={{
+            url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
           }}
         />
       ))}
 
-      {selectedPark && (
+      {selectedH && (
         <InfoWindow
           position={{
-          lat: selectedPark.latitude,
-          lng: selectedPark.longitude
+          lat: selectedH.latitude,
+          lng: selectedH.longitude
           }}
           onCloseClick={() => {
-            setSelectedPark(null);
+            setSelectedH(null);
           }}
         >
-          <div>park details</div>
+          <div>
+            <h2>{selectedH.Name}</h2>
+            <p>{selectedH.link}</p>
+          </div>
         </InfoWindow>
       )}
+      
+      {myjson_two.map(store => (
+        <Marker
+          key={store.NAICS}
+          position={{
+            lat: store.LOCATION[0],
+            lng: store.LOCATION[1]
+          }}
+          icon={{
+            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+          }}
+        />
+      ))}
     </GoogleMap> 
   );
 }
@@ -55,6 +78,7 @@ export default function App() {
         mapElement={<div style={{ height: '100%' }} />}
       />
     </div>
+    
   )
 }
 
