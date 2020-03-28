@@ -1,24 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {GoogleMap, withScriptjs, withGoogleMap, Marker} from "react-google-maps";
-import * as hospitalData from "./data/hospital.json";
+import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from "react-google-maps";
+import {myjson} from "./data/hospital.js";
 
 function Map() {
+  const [selectedPark, setSelectedPark] = useState(null);
+  
   return (
     <GoogleMap 
       defaultZoom={10} 
       defaultCenter={{ lat: 34.052235, lng: -118.243683}}
     >
-      {hospitalData.map(medical => (
+      {myjson.map(medical => (
         <Marker 
           key={medical.OBJECTID} 
           position={{
           lat: medical.latitude,
           lng: medical.longitude
           }}
+          onClick={() => {
+            setSelectedPark(medical);
+          }}
         />
       ))}
+
+      {selectedPark && (
+        <InfoWindow
+          position={{
+          lat: selectedPark.latitude,
+          lng: selectedPark.longitude
+          }}
+          onCloseClick={() => {
+            setSelectedPark(null);
+          }}
+        >
+          <div>park details</div>
+        </InfoWindow>
+      )}
     </GoogleMap> 
   );
 }
