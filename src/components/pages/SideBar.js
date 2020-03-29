@@ -46,10 +46,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const upperMenu = [
-  { text: "Home", to: "/home" },
-  { text: "Favorites", to: "/favorite" },
+  //   { text: "Home", to: "/home" },
   { text: "Map", to: "/map" },
-  { text: "Login", to: "/login" }
+  { text: "Favorites", to: "/favorite" }
 ];
 
 const lowerMenu = [
@@ -60,7 +59,6 @@ const lowerMenu = [
 export const SideBar = children => {
   const classes = useStyles();
   let location = useLocation();
-  console.log("path ", location.pathname);
 
   return (
     <div className={classes.root}>

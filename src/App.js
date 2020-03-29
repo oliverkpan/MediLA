@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { MapPage } from "./components/pages/MapPage";
-import { RandomTemplatePage } from "./components/pages/RandomTemplatePage";
 import { RouterPaths } from "./components/router/RouterPaths";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";

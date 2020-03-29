@@ -23,7 +23,3 @@ export const Header = () => {
     </Router>
   );
 };
-
-const Parent = styled.div`
-  background-color: #ffdc00;
-`;
