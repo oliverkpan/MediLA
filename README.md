@@ -6,7 +6,9 @@ With the current state of the crisis (as of March 29, 2020), many resources are 
 ### Submission
 [Devpost](https://devpost.com/software/medila)
 
-[Demo](medila.tech)
+[Website](medila.tech)
+
+[Video Demo](https://youtu.be/E0j_Ovh-peQ)
 
 #### Search Feature
 ![Search](https://github.com/oliverkpan/MediLA/blob/master/demo/login.png)
